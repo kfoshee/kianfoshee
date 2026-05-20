@@ -149,22 +149,27 @@
 
     .container > * {
       opacity: 0;
-      animation: rise 0.7s ease-out forwards;
+      transform: translateY(16px);
+      filter: blur(10px);
+      transition:
+        opacity 1s cubic-bezier(0.22, 1, 0.36, 1),
+        transform 1s cubic-bezier(0.22, 1, 0.36, 1),
+        filter 1s cubic-bezier(0.22, 1, 0.36, 1);
+      will-change: opacity, transform, filter;
     }
-    .container > *:nth-child(1) { animation-delay: 0.05s; }
-    .container > *:nth-child(2) { animation-delay: 0.18s; }
-    .container > *:nth-child(3) { animation-delay: 0.30s; }
-    .container > *:nth-child(4) { animation-delay: 0.38s; }
-    .container > *:nth-child(5) { animation-delay: 0.46s; }
-    .container > *:nth-child(6) { animation-delay: 0.52s; }
-    .container > *:nth-child(7) { animation-delay: 0.58s; }
-    .container > *:nth-child(8) { animation-delay: 0.64s; }
-    .container > *:nth-child(9) { animation-delay: 0.70s; }
-    .container > *:nth-child(n+10) { animation-delay: 0.76s; }
+    .container > *.in-view {
+      opacity: 1;
+      transform: translateY(0);
+      filter: blur(0);
+    }
 
-    @keyframes rise {
-      from { opacity: 0; transform: translateY(6px); }
-      to { opacity: 1; transform: translateY(0); }
+    @media (prefers-reduced-motion: reduce) {
+      .container > * {
+        opacity: 1;
+        transform: none;
+        filter: none;
+        transition: none;
+      }
     }
 
     h1 {
@@ -280,21 +285,18 @@
       font-style: italic;
       letter-spacing: 0.04em;
       z-index: 10;
-      background: var(--bg-blur);
-      backdrop-filter: blur(12px) saturate(160%);
-      -webkit-backdrop-filter: blur(12px) saturate(160%);
+      background: transparent;
       border: none;
       outline: none;
       cursor: pointer;
-      padding: 8px 16px;
-      border-radius: 999px;
+      padding: 0;
       color: var(--muted);
       opacity: 0;
       animation: fade-in 1s ease-out 0.9s forwards;
       display: flex;
       align-items: center;
       gap: 6px;
-      transition: color 0.2s ease, background-color 0.4s ease;
+      transition: color 0.2s ease;
       -webkit-tap-highlight-color: transparent;
     }
 
@@ -352,12 +354,8 @@
       display: flex;
       align-items: center;
       gap: 8px;
-      background: var(--bg-blur);
-      backdrop-filter: blur(12px) saturate(160%);
-      -webkit-backdrop-filter: blur(12px) saturate(160%);
-      padding: 8px 16px;
-      border-radius: 999px;
-      transition: background-color 0.4s ease;
+      background: transparent;
+      padding: 0;
       -webkit-tap-highlight-color: transparent;
       user-select: none;
     }
@@ -389,7 +387,6 @@
       .theme-toggle, .mark {
         top: 16px;
         font-size: 14px;
-        padding: 6px 12px;
       }
       .theme-toggle { left: 16px; }
       .mark { right: 16px; }
@@ -415,8 +412,15 @@
     }
 
     ::selection {
-      background: var(--link);
-      color: var(--bg);
+      background: rgba(155, 44, 44, 0.18);
+      color: var(--text);
+      text-shadow: none;
+    }
+
+    [data-theme="dark"] ::selection {
+      background: rgba(226, 123, 90, 0.24);
+      color: var(--text);
+      text-shadow: none;
     }
   </style>
 </head>
@@ -432,7 +436,7 @@
     <h1><a href="/">Kian Foshee</a></h1>
 
     <div class="intro">
-      <p>I'm 18, from Dallas, in San Francisco for the year. The act of building is what I love most. Taking an idea, making it real, watching it come together from nothing, then doing it again with the next thing more ambitious than the last. That's how I want to spend my life. I'm convinced I can build almost anything by committing fully to it.</p>
+      <p>I'm 18, from Dallas, spending the year in San Francisco. The act of building is what I love most. Taking an idea, making it real, watching it come together from nothing, then doing it again with the next thing more ambitious than the last. That's how I want to spend my life. I'm convinced I can build almost anything by committing fully to it.</p>
     </div>
 
     <h2>Companies</h2>
@@ -484,6 +488,33 @@
           applyTheme(opt.dataset.themeValue);
         });
       });
+    })();
+
+    // Scroll-driven reveal: items rise, un-blur, and fade in as they enter view.
+    (function() {
+      const items = Array.from(document.querySelectorAll('.container > *'));
+      if (!('IntersectionObserver' in window) ||
+          window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        items.forEach(el => el.classList.add('in-view'));
+        return;
+      }
+
+      const vh = window.innerHeight;
+      items.forEach((el, i) => {
+        const top = el.getBoundingClientRect().top;
+        el.style.transitionDelay = (top < vh ? Math.min(i, 8) * 0.07 : 0) + 's';
+      });
+
+      const io = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('in-view');
+            io.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.08, rootMargin: '0px 0px -6% 0px' });
+
+      items.forEach(el => io.observe(el));
     })();
   </script>
 </body>
