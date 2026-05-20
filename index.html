@@ -299,7 +299,7 @@
       display: flex;
       align-items: center;
       gap: 6px;
-      transition: color 0.2s ease;
+      transition: color 0.2s ease, opacity 0.35s ease, transform 0.35s ease;
       -webkit-tap-highlight-color: transparent;
     }
 
@@ -359,6 +359,7 @@
       gap: 8px;
       background: transparent;
       padding: 0;
+      transition: opacity 0.35s ease, transform 0.35s ease;
       -webkit-tap-highlight-color: transparent;
       user-select: none;
     }
@@ -384,27 +385,45 @@
 
     @media (max-width: 640px) {
       body {
-        padding: 80px 24px 64px;
-        font-size: 18px;
+        padding: 64px 22px 56px;
+        font-size: 16px;
       }
       .theme-toggle, .mark {
-        top: 16px;
-        font-size: 14px;
+        top: 14px;
+        font-size: 13px;
       }
       .theme-toggle { left: 16px; }
       .mark { right: 16px; }
       h1 {
-        margin-bottom: 36px;
+        margin-bottom: 28px;
       }
       h2 {
-        font-size: 26px;
-        margin-top: 44px;
+        font-size: 23px;
+        margin-top: 36px;
+        margin-bottom: 16px;
       }
       .intro p {
-        font-size: 19px;
+        font-size: 17px;
+        line-height: 1.5;
+        margin-bottom: 16px;
+      }
+      p {
+        font-size: 16px;
+        line-height: 1.55;
+        margin-bottom: 14px;
       }
       footer {
-        margin-top: 44px;
+        margin-top: 36px;
+        padding-top: 20px;
+        font-size: 15px;
+      }
+
+      /* Auto-hide top bar on mobile when scrolling down */
+      body.top-hidden .theme-toggle,
+      body.top-hidden .mark {
+        opacity: 0;
+        transform: translateY(-10px);
+        pointer-events: none;
       }
     }
 
@@ -444,11 +463,11 @@
 
     <h2>Companies</h2>
 
-    <p><span class="item-name">Terra</span> <span class="meta">(2026, building)</span>. Weather-triggered storm response for property managers, with a coverage guarantee. <a href="https://terra-snow.com" target="_blank" rel="noopener noreferrer">terra-snow.com</a></p>
+    <p><span class="item-name">Terra</span> <span class="meta">(2026, building)</span>. On-demand storm response for property managers. <a href="https://terra-snow.com" target="_blank" rel="noopener noreferrer">terra-snow.com</a></p>
 
-    <p><span class="item-name">Supreme Pickle</span> <span class="meta">(started at 14)</span>. DTC pickleball brand. $50K revenue, 40K followers, 100M+ views, Amazon #1 Best Seller, USAPA approved.</p>
+    <p><span class="item-name">Supreme Pickle</span> <span class="meta">(age 14)</span>. DTC pickleball brand. $50K revenue, 100M+ views, Amazon #1, USAPA approved.</p>
 
-    <p><span class="item-name">APEX</span> <span class="meta">(2026, on hold)</span>. AI education platform — adaptive lessons, HeyGen video tutoring, Duolingo-style loops.</p>
+    <p><span class="item-name">APEX</span> <span class="meta">(2026, paused)</span>. AI education platform with adaptive lessons and video tutoring.</p>
 
     <h2>Research</h2>
 
@@ -532,9 +551,9 @@
         duration: 1.15,
         easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
         smoothWheel: true,
-        smoothTouch: false,
+        smoothTouch: true,
         wheelMultiplier: 1,
-        touchMultiplier: 1.5,
+        touchMultiplier: 2,
       });
 
       function raf(time) {
@@ -544,6 +563,43 @@
       requestAnimationFrame(raf);
 
       window.__lenis = lenis;
+    })();
+
+    // Auto-hide top bar (toggle + SF) on scroll-down; reveal on scroll-up or at top.
+    // CSS gates this to mobile (≤640px) — desktop always shows them.
+    (function() {
+      const body = document.body;
+      let lastY = window.scrollY;
+      let revealTimer;
+      const downThreshold = 40;
+      const ticking = { v: false };
+
+      function onScroll() {
+        const y = Math.max(0, window.scrollY);
+        const delta = y - lastY;
+
+        if (y <= 10) {
+          body.classList.remove('top-hidden');
+        } else if (delta > 4 && y > downThreshold) {
+          body.classList.add('top-hidden');
+        } else if (delta < -4) {
+          body.classList.remove('top-hidden');
+        }
+
+        lastY = y;
+        ticking.v = false;
+
+        // Reveal again after scroll has settled.
+        clearTimeout(revealTimer);
+        revealTimer = setTimeout(() => body.classList.remove('top-hidden'), 1400);
+      }
+
+      window.addEventListener('scroll', () => {
+        if (!ticking.v) {
+          requestAnimationFrame(onScroll);
+          ticking.v = true;
+        }
+      }, { passive: true });
     })();
   </script>
 </body>
