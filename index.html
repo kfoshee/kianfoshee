@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kian Foshee</title>
+  <meta name="description" content="Kian Foshee">
+  <meta property="og:title" content="Kian Foshee">
+  <meta property="og:description" content="Kian Foshee">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://kianfoshee.com">
+
+  <!-- Prevent flash by setting theme before render -->
+  <script>
+    (function() {
+      try {
+        var stored = localStorage.getItem('theme');
+        var theme = stored || (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+        document.documentElement.setAttribute('data-theme', theme);
+      } catch (e) {
+        document.documentElement.setAttribute('data-theme', 'light');
+      }
+    })();
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Newsreader:ital,opsz,wght@0,16..72,300;0,16..72,400;0,16..72,500;0,16..72,600;1,16..72,400;1,16..72,500&display=swap" rel="stylesheet">
+
+  <style>
+    :root, [data-theme="light"] {
+      --bg: #F2EDE2;
+      --bg-blur: rgba(242, 237, 226, 0.96);
+      --text: #1C1917;
+      --muted: #6B6258;
+      --link: #9B2C2C;
+      --link-hover: #771D1D;
+      --rule: #D9D1BE;
+      --grain-opacity: 0.35;
+      --radial-1: rgba(155, 44, 44, 0.04);
+      --radial-2: rgba(28, 25, 23, 0.04);
+      --grain-svg: url("data:image/svg+xml;utf8,<svg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.1 0 0 0 0 0.08 0 0 0 0 0.06 0 0 0 0.18 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+    }
+
+    [data-theme="dark"] {
+      --bg: #1B1612;
+      --bg-blur: rgba(27, 22, 18, 0.96);
+      --text: #ECE3D2;
+      --muted: #948674;
+      --link: #E27B5A;
+      --link-hover: #EE8E6F;
+      --rule: #322B25;
+      --grain-opacity: 0.18;
+      --radial-1: rgba(226, 123, 90, 0.06);
+      --radial-2: rgba(236, 227, 210, 0.03);
+      --grain-svg: url("data:image/svg+xml;utf8,<svg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.95 0 0 0 0 0.89 0 0 0 0 0.78 0 0 0 0.22 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      text-rendering: optimizeLegibility;
+      scroll-behavior: smooth;
+      overscroll-behavior-y: none;
+    }
+
+    /* Premium custom scrollbar */
+    ::-webkit-scrollbar {
+      width: 10px;
+    }
+    ::-webkit-scrollbar-track {
+      background: transparent;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: var(--rule);
+      border-radius: 100px;
+      border: 3px solid transparent;
+      background-clip: padding-box;
+      transition: background 0.2s ease;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: var(--muted);
+      background-clip: padding-box;
+      border: 3px solid transparent;
+    }
+    /* Firefox */
+    html {
+      scrollbar-width: thin;
+      scrollbar-color: var(--rule) transparent;
+    }
+
+    body {
+      background-color: var(--bg);
+      background-image:
+        radial-gradient(at 20% 10%, var(--radial-1) 0%, transparent 50%),
+        radial-gradient(at 80% 90%, var(--radial-2) 0%, transparent 50%);
+      color: var(--text);
+      font-family: 'Newsreader', Georgia, 'Times New Roman', serif;
+      font-size: 19px;
+      line-height: 1.6;
+      font-weight: 400;
+      min-height: 100vh;
+      padding: 96px 28px 80px;
+      transition: background-color 0.4s ease, color 0.4s ease;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      opacity: var(--grain-opacity);
+      mix-blend-mode: multiply;
+      background-image: var(--grain-svg);
+      z-index: 1;
+      transition: opacity 0.4s ease;
+    }
+
+    [data-theme="dark"] body::before {
+      mix-blend-mode: screen;
+    }
+
+    /* Top fade gradient - hides content before it reaches the toggle/marker */
+    body::after {
+      content: "";
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 88px;
+      background: linear-gradient(to bottom, var(--bg) 0%, var(--bg) 50%, transparent 100%);
+      z-index: 5;
+      pointer-events: none;
+      transition: background 0.4s ease;
+    }
+
+    .container {
+      max-width: 640px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 2;
+    }
+
+    .container > * {
+      opacity: 0;
+      animation: rise 0.7s ease-out forwards;
+    }
+    .container > *:nth-child(1) { animation-delay: 0.05s; }
+    .container > *:nth-child(2) { animation-delay: 0.18s; }
+    .container > *:nth-child(3) { animation-delay: 0.30s; }
+    .container > *:nth-child(4) { animation-delay: 0.38s; }
+    .container > *:nth-child(5) { animation-delay: 0.46s; }
+    .container > *:nth-child(6) { animation-delay: 0.52s; }
+    .container > *:nth-child(7) { animation-delay: 0.58s; }
+    .container > *:nth-child(8) { animation-delay: 0.64s; }
+    .container > *:nth-child(9) { animation-delay: 0.70s; }
+    .container > *:nth-child(n+10) { animation-delay: 0.76s; }
+
+    @keyframes rise {
+      from { opacity: 0; transform: translateY(6px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    h1 {
+      font-family: 'Instrument Serif', Georgia, serif;
+      font-size: clamp(48px, 9vw, 68px);
+      font-weight: 400;
+      line-height: 0.95;
+      letter-spacing: -0.02em;
+      margin-bottom: 44px;
+    }
+
+    h1 a {
+      color: var(--text);
+      text-decoration: none;
+      border: none;
+    }
+
+    h2 {
+      font-family: 'Instrument Serif', Georgia, serif;
+      font-size: 30px;
+      font-weight: 400;
+      line-height: 1.1;
+      letter-spacing: -0.01em;
+      margin-top: 52px;
+      margin-bottom: 22px;
+      font-style: italic;
+      color: var(--text);
+    }
+
+    .intro p {
+      font-size: 21px;
+      line-height: 1.55;
+      margin-bottom: 22px;
+      color: var(--text);
+    }
+
+    .intro p:last-child {
+      margin-bottom: 0;
+    }
+
+    p {
+      margin-bottom: 18px;
+      font-size: 19px;
+      line-height: 1.6;
+    }
+
+    p:last-child {
+      margin-bottom: 0;
+    }
+
+    strong {
+      font-weight: 600;
+    }
+
+    .item-name {
+      font-weight: 600;
+      color: var(--text);
+    }
+
+    .meta {
+      color: var(--muted);
+      font-style: italic;
+    }
+
+    a {
+      color: var(--link);
+      text-decoration: underline;
+      text-underline-offset: 3px;
+      text-decoration-thickness: 0.8px;
+      transition: color 0.2s ease, text-decoration-thickness 0.2s ease;
+    }
+
+    a:hover {
+      color: var(--link-hover);
+      text-decoration-thickness: 1.6px;
+    }
+
+    footer {
+      margin-top: 56px;
+      padding-top: 24px;
+      border-top: 0.5px solid var(--rule);
+      font-size: 17px;
+      color: var(--muted);
+      font-style: italic;
+      transition: border-color 0.4s ease;
+    }
+
+    footer a {
+      color: var(--text);
+      text-decoration: underline;
+      text-underline-offset: 3px;
+      text-decoration-thickness: 0.8px;
+      font-style: normal;
+    }
+
+    footer a:hover {
+      color: var(--link);
+    }
+
+    .sep {
+      color: var(--muted);
+      margin: 0 8px;
+      font-style: normal;
+    }
+
+    /* Top-left theme toggle */
+    .theme-toggle {
+      position: fixed;
+      top: 24px;
+      left: 24px;
+      font-family: 'Instrument Serif', Georgia, serif;
+      font-size: 17px;
+      font-style: italic;
+      letter-spacing: 0.04em;
+      z-index: 10;
+      background: var(--bg-blur);
+      backdrop-filter: blur(12px) saturate(160%);
+      -webkit-backdrop-filter: blur(12px) saturate(160%);
+      border: none;
+      outline: none;
+      cursor: pointer;
+      padding: 8px 16px;
+      border-radius: 999px;
+      color: var(--muted);
+      opacity: 0;
+      animation: fade-in 1s ease-out 0.9s forwards;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      transition: color 0.2s ease, background-color 0.4s ease;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .theme-toggle:focus,
+    .theme-toggle:active {
+      outline: none;
+    }
+
+    .theme-toggle:focus-visible {
+      outline: 1.5px solid var(--link);
+      outline-offset: 4px;
+    }
+
+    .opt {
+      outline: none;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .opt:focus,
+    .opt:active {
+      outline: none;
+    }
+
+    .theme-toggle .opt {
+      transition: color 0.2s ease;
+      cursor: pointer;
+    }
+
+    .theme-toggle .opt.active {
+      color: var(--text);
+    }
+
+    .theme-toggle .opt:not(.active):hover {
+      color: var(--text);
+    }
+
+    .theme-toggle .tsep {
+      color: var(--rule);
+      pointer-events: none;
+    }
+
+    /* Top-right SF marker */
+    .mark {
+      position: fixed;
+      top: 24px;
+      right: 24px;
+      font-family: 'Instrument Serif', Georgia, serif;
+      font-size: 17px;
+      font-style: italic;
+      color: var(--muted);
+      letter-spacing: 0.04em;
+      z-index: 10;
+      opacity: 0;
+      animation: fade-in 1s ease-out 0.9s forwards;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--bg-blur);
+      backdrop-filter: blur(12px) saturate(160%);
+      -webkit-backdrop-filter: blur(12px) saturate(160%);
+      padding: 8px 16px;
+      border-radius: 999px;
+      transition: background-color 0.4s ease;
+      -webkit-tap-highlight-color: transparent;
+      user-select: none;
+    }
+
+    .mark-dot {
+      display: inline-block;
+      width: 6px;
+      height: 6px;
+      background: var(--link);
+      border-radius: 50%;
+      animation: pulse 2s ease-in-out infinite;
+      box-shadow: 0 0 0 0 currentColor;
+    }
+
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); opacity: 1; }
+      50% { transform: scale(0.7); opacity: 0.5; }
+    }
+
+    @keyframes fade-in {
+      to { opacity: 1; }
+    }
+
+    @media (max-width: 640px) {
+      body {
+        padding: 80px 24px 64px;
+        font-size: 18px;
+      }
+      .theme-toggle, .mark {
+        top: 16px;
+        font-size: 14px;
+        padding: 6px 12px;
+      }
+      .theme-toggle { left: 16px; }
+      .mark { right: 16px; }
+      h1 {
+        margin-bottom: 36px;
+      }
+      h2 {
+        font-size: 26px;
+        margin-top: 44px;
+      }
+      .intro p {
+        font-size: 19px;
+      }
+      footer {
+        margin-top: 44px;
+      }
+    }
+
+    @media (max-width: 400px) {
+      .sep {
+        margin: 0 5px;
+      }
+    }
+
+    ::selection {
+      background: var(--link);
+      color: var(--bg);
+    }
+  </style>
+</head>
+<body>
+  <button class="theme-toggle" aria-label="Toggle theme">
+    <span class="opt" data-theme-value="light">light</span>
+    <span class="tsep">/</span>
+    <span class="opt" data-theme-value="dark">dark</span>
+  </button>
+  <div class="mark"><span class="mark-dot"></span>SF</div>
+
+  <div class="container">
+    <h1><a href="/">Kian Foshee</a></h1>
+
+    <div class="intro">
+      <p>I'm 18, from Dallas, in San Francisco for the year. The act of building is what I love most. Taking an idea, making it real, watching it come together from nothing, then doing it again with the next thing more ambitious than the last. That's how I want to spend my life. I'm convinced I can build almost anything by committing fully to it.</p>
+    </div>
+
+    <h2>Companies</h2>
+
+    <p><span class="item-name">Terra</span> <span class="meta">(2026, building)</span>. Commercial on-demand storm response platform. Weather-triggered home services with a coverage guarantee for property managers. <a href="https://terra-snow.com">terra-snow.com</a></p>
+
+    <p><span class="item-name">Supreme Pickle</span> <span class="meta">(started at 14)</span>. Direct-to-consumer pickleball brand. Built solo to $50K revenue, 40K followers, 100M+ views, Amazon #1 Best Seller, USAPA approved.</p>
+
+    <p><span class="item-name">APEX</span> <span class="meta">(2026, on hold)</span>. AI-powered alternative education platform. Shipped Next.js product with adaptive lessons, HeyGen video integration, and Duolingo-style engagement loops.</p>
+
+    <h2>Research</h2>
+
+    <p><span class="item-name"><a href="https://opportunityinsights.org">Opportunity Insights</a></span>, Harvard University. Worked with Matt Staiger and Jamie Fogel on published papers about entrepreneurial exposure and intergenerational economic mobility, under Raj Chetty.</p>
+
+    <h2>Education</h2>
+
+    <p><span class="item-name">University of Southern California</span>. Incoming freshman, spring 2027.</p>
+
+    <p><span class="item-name">St. Mark's School of Texas</span>. Class of 2026.</p>
+
+    <footer>
+      <a href="https://www.linkedin.com/in/kian-foshee-5b874227a/">LinkedIn</a><span class="sep">/</span><a href="mailto:KianFoshee@gmail.com">Email</a>
+    </footer>
+  </div>
+
+  <script>
+    (function() {
+      const root = document.documentElement;
+      const toggle = document.querySelector('.theme-toggle');
+      const opts = toggle.querySelectorAll('.opt');
+
+      function applyTheme(theme) {
+        root.setAttribute('data-theme', theme);
+        opts.forEach(opt => {
+          opt.classList.toggle('active', opt.dataset.themeValue === theme);
+        });
+        try { localStorage.setItem('theme', theme); } catch (e) {}
+      }
+
+      // Initial active state
+      const current = root.getAttribute('data-theme') || 'light';
+      opts.forEach(opt => {
+        opt.classList.toggle('active', opt.dataset.themeValue === current);
+      });
+
+      opts.forEach(opt => {
+        opt.addEventListener('click', (e) => {
+          e.stopPropagation();
+          applyTheme(opt.dataset.themeValue);
+        });
+      });
+    })();
+  </script>
+</body>
+</html>
