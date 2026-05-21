@@ -221,13 +221,13 @@
       margin-top: 4px;
     }
 
-    /* Scroll hint — subtle bouncing chevron, fades out after first scroll */
+    /* Scroll hint — bouncing chevron, fades out after first scroll */
     .scroll-hint {
       position: fixed;
-      bottom: 22px;
+      bottom: max(28px, env(safe-area-inset-bottom));
       left: 50%;
       z-index: 9;
-      color: var(--muted);
+      color: var(--text);
       opacity: 0;
       transform: translateX(-50%);
       animation: hint-in 1s cubic-bezier(0.22, 1, 0.36, 1) 1.6s forwards;
@@ -247,12 +247,12 @@
 
     @keyframes hint-in {
       from { opacity: 0; transform: translate(-50%, 8px); }
-      to { opacity: 0.5; transform: translate(-50%, 0); }
+      to { opacity: 0.7; transform: translate(-50%, 0); }
     }
 
     @keyframes hint-bob {
       0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(5px); }
+      50% { transform: translateY(3px); }
     }
 
     p {
@@ -490,9 +490,9 @@
 </head>
 <body>
   <div class="scroll-hint" aria-hidden="true">
-    <svg width="14" height="26" viewBox="0 0 14 26" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <line x1="7" y1="2" x2="7" y2="16" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/>
-      <path d="M2 16 L7 22 L12 16" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+    <svg width="10" height="52" viewBox="0 0 10 52" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <line x1="5" y1="0" x2="5" y2="44" stroke="currentColor" stroke-width="0.75" stroke-linecap="round"/>
+      <path d="M1.5 40 L5 45.5 L8.5 40" stroke="currentColor" stroke-width="0.75" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
     </svg>
   </div>
   <button class="theme-toggle" aria-label="Toggle theme">
@@ -507,7 +507,7 @@
 
     <div class="intro">
       <p>I'm spending the rest of the year in San Francisco. It's the only place I want to be before college starts. The founders I'd want to learn from are here, and right now feels like the right time. Nothing to lose, no one to answer to, and everything to give. And I'm here to build. It's the only thing I want to do: take an idea, make it real, and watch it come together from nothing.</p>
-      <p class="timestamp">— May 2026</p>
+      <p class="timestamp">— Kian Foshee, May 2026</p>
     </div>
 
     <h2>Companies</h2>
