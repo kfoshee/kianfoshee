@@ -213,6 +213,48 @@
       margin-bottom: 0;
     }
 
+    .timestamp {
+      font-size: 15px;
+      color: var(--muted);
+      font-style: italic;
+      letter-spacing: 0.04em;
+      margin-top: 4px;
+    }
+
+    /* Scroll hint — subtle bouncing chevron, fades out after first scroll */
+    .scroll-hint {
+      position: fixed;
+      bottom: 22px;
+      left: 50%;
+      z-index: 9;
+      color: var(--muted);
+      opacity: 0;
+      transform: translateX(-50%);
+      animation: hint-in 1s cubic-bezier(0.22, 1, 0.36, 1) 1.6s forwards;
+      transition: opacity 0.5s ease, color 0.4s ease;
+      pointer-events: none;
+      user-select: none;
+    }
+
+    .scroll-hint svg {
+      display: block;
+      animation: hint-bob 2.4s ease-in-out infinite;
+    }
+
+    body.scrolled .scroll-hint {
+      opacity: 0 !important;
+    }
+
+    @keyframes hint-in {
+      from { opacity: 0; transform: translate(-50%, 8px); }
+      to { opacity: 0.5; transform: translate(-50%, 0); }
+    }
+
+    @keyframes hint-bob {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(5px); }
+    }
+
     p {
       margin-bottom: 18px;
       font-size: 19px;
@@ -447,6 +489,12 @@
   </style>
 </head>
 <body>
+  <div class="scroll-hint" aria-hidden="true">
+    <svg width="14" height="26" viewBox="0 0 14 26" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <line x1="7" y1="2" x2="7" y2="16" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/>
+      <path d="M2 16 L7 22 L12 16" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+    </svg>
+  </div>
   <button class="theme-toggle" aria-label="Toggle theme">
     <span class="opt" data-theme-value="light">light</span>
     <span class="tsep">/</span>
@@ -458,7 +506,8 @@
     <h1><a href="/">Kian Foshee</a></h1>
 
     <div class="intro">
-      <p>I left Dallas at 18 to spend the balance of this year in San Francisco before college. Being this young is my advantage, with nothing to lose, no one pulling at me, and a hunger no one older has. All of it goes into the act of building, which is what I love most: taking an idea, making it real, and watching it come together from nothing. The more I do it, the more I believe there's nothing I can't do if I fully commit to it.</p>
+      <p>I decided to spend the rest of the year in San Francisco. It felt like the right thing to do before college starts. The founders I'd want to learn from are here, and right now feels like the right time. Nothing to lose, no one to answer to, and everything to give. All of this energy goes into the act of building, which is what I love most: taking an idea, making it real, and watching it come together from nothing. Every time I do it, I'm more certain I can build whatever I commit to.</p>
+      <p class="timestamp">— May 2026</p>
     </div>
 
     <h2>Companies</h2>
@@ -577,6 +626,9 @@
       function onScroll() {
         const y = Math.max(0, window.scrollY);
         const delta = y - lastY;
+
+        // Permanent: dismiss the scroll-hint chevron once the user has moved.
+        if (y > 50) body.classList.add('scrolled');
 
         if (y <= 10) {
           body.classList.remove('top-hidden');
