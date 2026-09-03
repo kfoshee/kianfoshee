@@ -9,15 +9,13 @@ right=0.62in
 
 \usepackage[T1]{fontenc}
 \usepackage[utf8]{inputenc}
-\usepackage[scaled=0.94]{helvet}
 \usepackage{enumitem}
 \usepackage{titlesec}
 \usepackage{xcolor}
 \usepackage{array}
 \usepackage{tabularx}
 
-\definecolor{linkblue}{HTML}{155E9A}
-\definecolor{muted}{HTML}{52525B}
+\definecolor{linkblue}{HTML}{0066CC}
 
 \usepackage[
 colorlinks=true,
@@ -26,7 +24,6 @@ linkcolor=linkblue
 ]{hyperref}
 
 \pagestyle{empty}
-\renewcommand{\familydefault}{\sfdefault}
 \setlength{\parindent}{0pt}
 \setlength{\parskip}{0pt}
 
@@ -53,8 +50,8 @@ label={\small\textbullet}
 \newcommand{\entry}[3]{%
 \textbf{#1}
 \hfill
-{\small\color{muted} #2}\\[-1pt]
-{\small\color{muted}\textit{#3}}\par
+{\small #2}\\[-1pt]
+{\small\textit{#3}}\par
 }
 
 \begin{document}
@@ -63,7 +60,7 @@ label={\small\textbullet}
 
 {\LARGE\textbf{Kian Foshee}}\vspace{3pt}\\
 
-{\small\color{muted}
+{\small
 Software Engineer
 \sep
 Founder
@@ -130,7 +127,7 @@ research writing, stakeholder interviews, qualitative synthesis
 
 \entry
 {\href{https://meridian.kianfoshee.com}{Meridian} \texorpdfstring{$|$}{|} Founder}
-{2026-Present}
+{2026--Present}
 {Grid infrastructure software for large flexible electricity loads}
 
 \begin{itemize}
@@ -169,7 +166,7 @@ results and communicate findings.
 
 \entry
 {Supreme Pickle \texorpdfstring{$|$}{|} Founder}
-{2021-2023}
+{2021--2023}
 {Direct-to-consumer sporting-goods company}
 
 \begin{itemize}
