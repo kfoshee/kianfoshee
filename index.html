@@ -320,6 +320,34 @@
       font-style: normal;
     }
 
+    .meridian-signature {
+      display: flex;
+      justify-content: center;
+      margin-top: 52px;
+      padding-bottom: 8px;
+    }
+
+    .meridian-signature__mark {
+      display: block;
+      width: clamp(72px, 14vw, 96px);
+      height: auto;
+      transform-origin: 50% 58%;
+      filter: drop-shadow(0 8px 11px rgba(28, 25, 23, 0.16));
+      animation: meridian-float 5.8s ease-in-out infinite;
+      will-change: transform;
+    }
+
+    @keyframes meridian-float {
+      0%, 100% { transform: translateY(0) rotate(-0.3deg); }
+      50% { transform: translateY(-5px) rotate(0.3deg); }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .meridian-signature__mark {
+        animation: none;
+      }
+    }
+
     /* Top-left theme toggle */
     .theme-toggle {
       position: fixed;
@@ -459,6 +487,13 @@
         padding-top: 20px;
         font-size: 15px;
       }
+      .meridian-signature {
+        margin-top: 38px;
+        padding-bottom: 4px;
+      }
+      .meridian-signature__mark {
+        width: clamp(66px, 20vw, 82px);
+      }
 
       /* Auto-hide top bar on mobile when scrolling down */
       body.top-hidden .theme-toggle,
@@ -527,6 +562,10 @@
     <footer>
       <a href="https://www.linkedin.com/in/kianfoshee/" target="_blank" rel="noopener noreferrer">LinkedIn</a><span class="sep">/</span><a href="mailto:KianFoshee@gmail.com">Email</a>
     </footer>
+
+    <div class="meridian-signature" aria-hidden="true">
+      <img class="meridian-signature__mark" src="assets/meridian-mark.png" alt="">
+    </div>
   </div>
 
   <script>
