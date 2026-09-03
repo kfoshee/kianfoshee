@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kian Foshee - Resume</title>
+  <meta name="description" content="Kian Foshee's resume: software engineer, founder, and research contributor.">
+  <link rel="canonical" href="https://kianfoshee.com/resume">
+  <meta property="og:title" content="Kian Foshee - Resume">
+  <meta property="og:description" content="Software Engineer | Founder | Research Contributor">
+  <meta property="og:type" content="profile">
+  <meta property="og:url" content="https://kianfoshee.com/resume">
+  <style>
+    :root {
+      --ink: #18181b;
+      --muted: #52525b;
+      --accent: #155e9a;
+      --rule: #a1a1aa;
+      --paper: #ffffff;
+      --surround: #eceae6;
+    }
+    * { box-sizing: border-box; }
+    html { background: var(--surround); }
+    body {
+      margin: 0;
+      color: var(--ink);
+      background: var(--surround);
+      font-family: Arial, Helvetica, sans-serif;
+      -webkit-font-smoothing: antialiased;
+    }
+    .actions {
+      position: sticky;
+      top: 0;
+      z-index: 2;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      max-width: 8.5in;
+      margin: 0 auto;
+      padding: 14px 18px;
+      color: #f4f4f5;
+      background: rgba(24, 24, 27, 0.96);
+      backdrop-filter: blur(12px);
+    }
+    .actions a { color: inherit; text-decoration: none; }
+    .home { font-size: 14px; opacity: 0.82; }
+    .buttons { display: flex; gap: 10px; }
+    .button {
+      display: inline-flex;
+      align-items: center;
+      min-height: 36px;
+      padding: 0 13px;
+      border: 1px solid #71717a;
+      border-radius: 7px;
+      font-size: 13px;
+      font-weight: 700;
+    }
+    .button.primary { color: #18181b; background: #fafafa; border-color: #fafafa; }
+    .page {
+      width: min(8.5in, calc(100% - 24px));
+      min-height: 11in;
+      margin: 24px auto 48px;
+      padding: 0.42in 0.55in 0.38in;
+      background: var(--paper);
+      box-shadow: 0 18px 50px rgba(24, 24, 27, 0.12);
+    }
+    header { text-align: center; }
+    h1 { margin: 0 0 3px; font-size: 29px; line-height: 1; letter-spacing: -0.02em; }
+    .tagline, .contact { margin: 0; color: var(--muted); }
+    .tagline { font-size: 12px; }
+    .contact { margin-top: 4px; font-size: 10.6px; }
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    section { margin-top: 8px; }
+    h2 {
+      margin: 0 0 4px;
+      padding-bottom: 2px;
+      border-bottom: 1px solid var(--rule);
+      font-size: 12px;
+      line-height: 1.2;
+      letter-spacing: 0.035em;
+      text-transform: uppercase;
+    }
+    p { margin: 0; font-size: 11px; line-height: 1.34; }
+    .entry { margin-top: 5px; }
+    .entry:first-of-type { margin-top: 0; }
+    .entry-head { display: flex; justify-content: space-between; gap: 14px; }
+    .entry-head strong { font-size: 11.5px; }
+    .date { flex: 0 0 auto; color: var(--muted); font-size: 10.5px; }
+    .sub { color: var(--muted); font-size: 10.5px; font-style: italic; }
+    ul { margin: 2px 0 0; padding-left: 16px; }
+    li { margin: 1px 0; font-size: 10.8px; line-height: 1.3; }
+    .skills { display: grid; grid-template-columns: 88px 1fr; gap: 2px 5px; }
+    .skills strong, .skills span { font-size: 10.8px; line-height: 1.3; }
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
+    }
+    @media (max-width: 680px) {
+      .actions { padding: 12px; }
+      .button { min-height: 34px; padding: 0 10px; }
+      .page {
+        width: 100%;
+        min-height: 0;
+        margin: 0;
+        padding: 30px 22px 44px;
+        box-shadow: none;
+      }
+      .contact { line-height: 1.55; }
+      .entry-head { align-items: baseline; }
+      .skills { grid-template-columns: 82px 1fr; }
+    }
+    @media print {
+      @page { size: letter; margin: 0; }
+      html, body { background: #fff; }
+      .actions { display: none; }
+      .page { width: 8.5in; height: 11in; margin: 0; box-shadow: none; }
+    }
+  </style>
+</head>
+<body>
+  <nav class="actions" aria-label="Resume actions">
+    <a class="home" href="/">Kian Foshee</a>
+    <div class="buttons">
+      <a class="button" href="kian-foshee-resume.pdf" target="_blank" rel="noopener">View PDF</a>
+      <a class="button primary" href="kian-foshee-resume.pdf" download>Download PDF</a>
+    </div>
+  </nav>
+
+  <main class="page">
+    <header>
+      <h1>Kian Foshee</h1>
+      <p class="tagline">Software Engineer | Founder | Research Contributor</p>
+      <p class="contact">Los Angeles, CA | <a href="mailto:kianfoshee@gmail.com">kianfoshee@gmail.com</a> | 469-493-8999 | <a href="https://www.linkedin.com/in/kianfoshee/">LinkedIn</a> | <a href="https://kianfoshee.com">kianfoshee.com</a></p>
+    </header>
+
+    <section>
+      <h2>Profile</h2>
+      <p>Software engineer, founder, and research contributor focused on building technical products and analytical systems from first principles. Currently building Meridian, grid infrastructure software for large flexible electricity loads. Previously built a consumer company to $50K+ in revenue and contributed data pipelines and analysis to economic-mobility research at Opportunity Insights.</p>
+    </section>
+
+    <section>
+      <h2>Education</h2>
+      <div class="entry">
+        <div class="entry-head"><strong>University of Southern California</strong><span class="date">Los Angeles, CA</span></div>
+        <p class="sub">Freshman</p>
+      </div>
+      <div class="entry">
+        <div class="entry-head"><strong>St. Mark's School of Texas</strong><span class="date">Dallas, TX</span></div>
+        <p class="sub">Class of 2026 | 4.3/4.0 GPA</p>
+      </div>
+    </section>
+
+    <section>
+      <h2>Technical Skills</h2>
+      <div class="skills">
+        <strong>Engineering</strong><span>JavaScript, TypeScript, React, Next.js, Node.js, PostgreSQL, full-stack development</span>
+        <strong>Data</strong><span>R, Python, SQL, data pipelines, statistical analysis, data cleaning, validation, visualization</span>
+        <strong>Research</strong><span>Reproducible workflows, exploratory analysis, literature review, research writing, stakeholder interviews, qualitative synthesis</span>
+      </div>
+    </section>
+
+    <section>
+      <h2>Experience</h2>
+      <div class="entry">
+        <div class="entry-head"><strong><a href="https://meridian.kianfoshee.com">Meridian</a> | Founder</strong><span class="date">2026-Present</span></div>
+        <p class="sub">Grid infrastructure software for large flexible electricity loads</p>
+        <ul>
+          <li>Building software that helps data centers and other flexible loads connect to the electric grid faster by reducing demand during the small number of hours when local grid capacity is constrained.</li>
+          <li>Developing the software and operating layer that converts time-varying grid headroom into dispatchable load flexibility, unlocking capacity that would otherwise remain unavailable for new connections.</li>
+        </ul>
+      </div>
+      <div class="entry">
+        <div class="entry-head"><strong>Opportunity Insights | Harvard University</strong><span class="date">Research Contributor</span></div>
+        <p class="sub">Economic mobility research with Matt Staiger and Jamie Fogel | <a href="https://papers.ssrn.com/sol3/cf_dev/AbsByAuth.cfm?per_id=8481368">SSRN profile</a></p>
+        <ul>
+          <li>Contributed analysis supporting two research papers on entrepreneurial exposure and intergenerational mobility.</li>
+          <li>Built reproducible R pipelines to clean, join, validate, and analyze large unstructured datasets.</li>
+          <li>Produced 50+ research artifacts including graphs, tables, validation outputs, and documented analysis files used to inspect results and communicate findings.</li>
+        </ul>
+      </div>
+      <div class="entry">
+        <div class="entry-head"><strong>Supreme Pickle | Founder</strong><span class="date">Started at age 14</span></div>
+        <p class="sub">Direct-to-consumer sporting-goods company</p>
+        <ul>
+          <li>Founded and independently grew the company to <strong>$50K+ in revenue</strong>, <strong>40K+ followers</strong>, and <strong>100M+ views</strong>, reaching Amazon <strong>#1 Best Seller</strong> status and USAPA approval.</li>
+          <li>Used customer feedback, performance data, and rapid product iteration to refine the product, marketing, and operations.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section>
+      <h2>Honors</h2>
+      <ul>
+        <li><strong>World Economics Cup:</strong> Individual Top 10 and Team 4th at the World Finals (47 countries and 2,500+ competitors).</li>
+        <li><strong>Harvard Pre-Collegiate Economics Challenge:</strong> 3rd Place Team and Individual High Distinction.</li>
+        <li><strong>Northwestern Economics Tournament:</strong> 2nd Place (52 teams).</li>
+      </ul>
+    </section>
+  </main>
+</body>
+</html>
