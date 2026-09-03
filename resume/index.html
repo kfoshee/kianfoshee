@@ -136,14 +136,6 @@
       gap: 32px;
       margin-bottom: 34px;
     }
-    .eyebrow {
-      margin: 0 0 9px;
-      color: var(--muted);
-      font-size: 15px;
-      font-style: italic;
-      font-weight: 400;
-      letter-spacing: 0.04em;
-    }
     h1 {
       margin: 0;
       font-size: clamp(48px, 9vw, 68px);
@@ -157,16 +149,6 @@
       font-size: 21px;
       line-height: 1.55;
     }
-    .document-meta {
-      flex: 0 0 auto;
-      display: flex;
-      gap: 9px;
-      margin-bottom: 7px;
-      color: var(--muted);
-      font-size: 15px;
-      font-style: italic;
-    }
-    .document-meta span + span::before { content: "\00b7"; margin-right: 9px; color: var(--rule); }
     .viewer {
       position: relative;
       overflow: visible;
@@ -237,7 +219,6 @@
       .theme-toggle { width: 40px; min-height: 40px; }
       .page { padding: 44px 0 48px; }
       .hero { display: block; margin-bottom: 24px; }
-      .document-meta { margin-top: 20px; margin-bottom: 0; }
       .viewer { margin-inline: 0; padding: 0; }
       .paper-link::after { content: "Open \2197"; top: 10px; right: 10px; opacity: 1; transform: none; }
       .page-footer { align-items: flex-start; flex-direction: column; }
@@ -292,12 +273,8 @@
   <main class="page">
     <section class="hero" aria-labelledby="page-title">
       <div>
-        <p class="eyebrow">Curriculum Vitae</p>
         <h1 id="page-title">Resume</h1>
         <p class="subtitle">Software engineer, founder, and research contributor.</p>
-      </div>
-      <div class="document-meta" aria-label="Document details">
-        <span>1 page</span><span>PDF</span><span>September 2026</span>
       </div>
     </section>
 
