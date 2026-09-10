@@ -1,196 +1,129 @@
 \documentclass[10pt,letterpaper]{article}
 
 \usepackage[
-top=0.55in,
-bottom=0.50in,
-left=0.62in,
-right=0.62in
+  top=0.46in,
+  bottom=0.44in,
+  left=0.60in,
+  right=0.60in
 ]{geometry}
-
 \usepackage[T1]{fontenc}
 \usepackage[utf8]{inputenc}
+\usepackage[scaled=0.96]{helvet}
+\renewcommand{\familydefault}{\sfdefault}
+\usepackage{microtype}
 \usepackage{enumitem}
 \usepackage{titlesec}
 \usepackage{xcolor}
 \usepackage{array}
 \usepackage{tabularx}
-
-\definecolor{linkblue}{HTML}{0066CC}
-
 \usepackage[
-colorlinks=true,
-urlcolor=linkblue,
-linkcolor=linkblue
+  colorlinks=true,
+  urlcolor=accent,
+  linkcolor=accent
 ]{hyperref}
+
+\definecolor{accent}{HTML}{185D8A}
+\definecolor{ink}{HTML}{17212B}
+\definecolor{muted}{HTML}{5D6973}
+\definecolor{rule}{HTML}{BCC7CF}
 
 \pagestyle{empty}
 \setlength{\parindent}{0pt}
 \setlength{\parskip}{0pt}
+\urlstyle{same}
+\color{ink}
+\fontsize{9.35pt}{11.15pt}\selectfont
 
-\newcommand{\sep}{\enspace\textcolor{gray!60}{$|$}\enspace}
-
-\titleformat{\section}
-{\normalsize\bfseries}
-{}
-{0pt}
-{\MakeUppercase}
-[\vspace{-1pt}{\hrule height 0.6pt}\vspace{4pt}]
-
-\titlespacing*{\section}{0pt}{9pt}{4pt}
-
-\setlist[itemize]{
-leftmargin=14pt,
-itemsep=2.5pt,
-topsep=3pt,
-parsep=0pt,
-partopsep=0pt,
-label={\small\textbullet}
+\newcommand{\sep}{\enspace\textcolor{rule}{\textbar}\enspace}
+\newcommand{\entry}[3]{%
+  \textbf{#1}\hfill{\small\textcolor{muted}{#2}}\\[-1pt]
+  {\small\textit{\textcolor{muted}{#3}}}\par
 }
 
-\newcommand{\entry}[3]{%
-\textbf{#1}
-\hfill
-{\small #2}\\[-1pt]
-{\small\textit{#3}}\par
+\titleformat{\section}
+  {\fontsize{10.3pt}{11.5pt}\selectfont\bfseries\color{ink}}
+  {}{0pt}{\MakeUppercase}
+  [\vspace{2pt}{\color{rule}\hrule height 0.55pt}]
+\titlespacing*{\section}{0pt}{7.2pt}{3.5pt}
+
+\setlist[itemize]{
+  leftmargin=13pt,
+  itemsep=1.4pt,
+  topsep=2.2pt,
+  parsep=0pt,
+  partopsep=0pt,
+  label={\raisebox{0.15ex}{\scriptsize\textbullet}}
 }
 
 \begin{document}
 
 \begin{center}
-
-{\LARGE\textbf{Kian Foshee}}\vspace{3pt}\\
-
-{\small
-Software Engineer
-\sep
-Founder
-\sep
-Research Contributor
-}\vspace{4pt}\\
-
-{\small
-Los Angeles, CA
-\sep
-\href{mailto:kianfoshee@gmail.com}{kianfoshee@gmail.com}
-\sep
-469-493-8999
-\sep
-\href{https://www.linkedin.com/in/kianfoshee/}{LinkedIn}
-\sep
-\href{https://kianfoshee.com}{kianfoshee.com}
-}
-
+  {\fontsize{22pt}{24pt}\selectfont\bfseries Kian Foshee}\\[2pt]
+  {\small\textcolor{muted}{Software Engineer \sep Founder \sep Research Contributor}}\\[3.5pt]
+  {\small
+    Los Angeles, CA
+    \sep \href{mailto:kianfoshee@gmail.com}{kianfoshee@gmail.com}
+    \sep 469-493-8999
+    \sep \href{https://www.linkedin.com/in/kianfoshee/}{LinkedIn}
+    \sep \href{https://kianfoshee.com}{kianfoshee.com}
+  }
 \end{center}
 
+\vspace{-2pt}
 \section{Profile}
 
-Software engineer, founder, and research contributor focused on building
-technical products and analytical systems from first principles.
-Currently building \href{https://meridian.kianfoshee.com}{Meridian},
-grid infrastructure software for large flexible electricity loads.
-Previously built a consumer company to \$50K+ in revenue and contributed
-data pipelines and analysis to economic-mobility research at
-Opportunity Insights.
+Software engineer and founder building grid infrastructure software at
+\href{https://meridian.kianfoshee.com}{Meridian}. Experience shipping
+production AI systems, contributing to economic-mobility research at
+Opportunity Insights, and growing a consumer company to \textbf{\$50K+ in revenue}.
 
 \section{Education}
 
-\entry
-{University of Southern California}
-{Los Angeles, CA}
-{Freshman \sep Artificial Intelligence (B.S.)}
-
-\vspace{4pt}
-
-\entry
-{St. Mark's School of Texas}
-{Dallas, TX}
-{Class of 2026 \sep 4.3/4.0 GPA}
+\entry{University of Southern California}{Los Angeles, CA}{Freshman \sep Artificial Intelligence (B.S.)}
+\vspace{2.5pt}
+\entry{St. Mark's School of Texas}{Dallas, TX}{Class of 2026 \sep 4.3/4.0 GPA}
 
 \section{Technical Skills}
 
-\begin{tabularx}{\textwidth}
-{@{}>{\bfseries}p{1.05in} X@{}}
-Engineering &
-JavaScript, TypeScript, React, Next.js, Node.js, PostgreSQL,
-full-stack development \\[3pt]
-
-Data &
-R, Python, SQL, data pipelines, statistical analysis,
-data cleaning, validation, visualization \\[3pt]
-
-Research &
-Reproducible workflows, exploratory analysis, literature review,
-research writing, stakeholder interviews, qualitative synthesis
+\begin{tabularx}{\textwidth}{@{}>{\bfseries}p{1.28in} X@{}}
+Engineering & JavaScript, TypeScript, React, Next.js, Node.js, PostgreSQL \\[1.6pt]
+Data & Python, R, SQL, data pipelines, statistical analysis, visualization \\[1.6pt]
+\mbox{AI \& Automation} & Vapi, ElevenLabs, Telnyx, voice agents, workflow automation \\[1.6pt]
+Research & Reproducible analysis, data validation, literature review, research writing
 \end{tabularx}
 
 \section{Experience}
 
-\entry
-{\href{https://meridian.kianfoshee.com}{Meridian} \texorpdfstring{$|$}{|} Founder}
-{2026--Present}
-{Grid infrastructure software for large flexible electricity loads}
-
+\entry{\href{https://meridian.kianfoshee.com}{Meridian} \sep Founder}{2026--Present}{Grid infrastructure software for large flexible electricity loads}
 \begin{itemize}
-\item Building software that helps data centers and other flexible loads
-connect to the electric grid faster by reducing demand during the small
-number of hours when local grid capacity is constrained.
-
-\item Developing the software and operating layer that converts
-time-varying grid headroom into dispatchable load flexibility,
-unlocking capacity that would otherwise remain unavailable for new
-connections.
+  \item Building software to help data centers and other flexible loads connect to the grid faster by reducing demand during periods of constrained local capacity.
+  \item Developing the operating layer that translates available grid capacity into coordinated, dispatchable load flexibility.
 \end{itemize}
 
-\vspace{3pt}
-
-\entry
-{Opportunity Insights \texorpdfstring{$|$}{|} Harvard University}
-{Research Contributor}
-{Economic mobility research with Matt Staiger and Jamie Fogel
-\sep
-\href{https://papers.ssrn.com/sol3/cf_dev/AbsByAuth.cfm?per_id=8481368}{SSRN profile}}
-
+\vspace{1.5pt}
+\entry{Opportunity Insights \sep Research Contributor}{}{Harvard University \sep Matt Staiger and Jamie Fogel \sep \href{https://papers.ssrn.com/sol3/cf_dev/AbsByAuth.cfm?per_id=8481368}{SSRN profile}}
 \begin{itemize}
-\item Contributed analysis supporting two research papers on
-entrepreneurial exposure and intergenerational mobility.
-
-\item Built reproducible R pipelines to clean, join, validate, and
-analyze large unstructured datasets.
-
-\item Produced 50+ research artifacts including graphs, tables,
-validation outputs, and documented analysis files used to inspect
-results and communicate findings.
+  \item Built reproducible R pipelines and produced \textbf{50+ research artifacts} supporting two papers on entrepreneurial exposure and intergenerational mobility, including data cleaning, validation, analysis, and visualization.
 \end{itemize}
 
-\vspace{3pt}
-
-\entry
-{Supreme Pickle \texorpdfstring{$|$}{|} Founder}
-{2021--2023}
-{Direct-to-consumer sporting-goods company}
-
+\vspace{1.5pt}
+\entry{Concord Pools and Spas \sep AI and Automation Engineer}{2025--2026}{Albany, NY \sep Multi-million-dollar retail and installation business}
 \begin{itemize}
-\item Founded and independently grew the company to
-\textbf{\$50K+ in revenue},
-\textbf{40K+ followers}, and
-\textbf{100M+ views}, reaching
-Amazon \textbf{\#1 Best Seller} status and USAPA approval.
+  \item Built a production customer-service voice agent, automated accounts payable and inventory tracking, and developed a predictive service-demand system using \textbf{14,000 installation records}.
+\end{itemize}
 
-\item Used customer feedback, performance data, and rapid product
-iteration to refine the product, marketing, and operations.
+\vspace{1.5pt}
+\entry{Supreme Pickle \sep Founder}{2021--2023}{Direct-to-consumer sporting-goods company}
+\begin{itemize}
+  \item Founded and grew the company to \textbf{\$50K+ in revenue}, \textbf{40K+ followers}, and \textbf{100M+ views}, achieving Amazon \textbf{\#1 Best Seller} status and USAPA approval.
 \end{itemize}
 
 \section{Honors}
 
 \begin{itemize}
-\item \textbf{World Economics Cup}: Individual Top 10 and Team 4th at
-the World Finals {\small (47 countries and 2,500+ competitors)}.
-
-\item \textbf{Harvard Pre-Collegiate Economics Challenge}: 3rd Place
-Team and Individual High Distinction.
-
-\item \textbf{Northwestern Economics Tournament}: 2nd Place
-{\small (52 teams)}.
+  \item \textbf{World Economics Cup}: Individual Top 10 and Team 4th, World Finals {\small (47 countries; 2,500+ competitors)}.
+  \item \textbf{Harvard Pre-Collegiate Economics Challenge}: Team 3rd Place and Individual High Distinction.
+  \item \textbf{Northwestern Economics Tournament}: 2nd Place {\small (52 teams)}.
 \end{itemize}
 
 \end{document}

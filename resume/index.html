@@ -21,42 +21,27 @@
       }
     })();
   </script>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,16..72,400;0,16..72,500;0,16..72,600;1,16..72,400&display=swap" rel="stylesheet">
   <style>
     :root, [data-theme="light"] {
-      --bg: #f2ede2;
-      --surface: rgba(242, 237, 226, 0.96);
-      --solid: #f2ede2;
-      --text: #1c1917;
-      --muted: #6b6258;
-      --rule: #d9d1be;
+      --bg: #f3f1ec;
+      --text: #24211e;
+      --muted: #746e67;
+      --rule: #ddd8d0;
       --accent: #9b2c2c;
-      --accent-hover: #771d1d;
-      --button-text: #fffaf2;
-      --shadow: 0 28px 70px rgba(50, 40, 29, 0.15), 0 3px 12px rgba(50, 40, 29, 0.08);
-      --grain-opacity: 0.35;
-      --radial-1: rgba(155, 44, 44, 0.04);
-      --radial-2: rgba(28, 25, 23, 0.04);
-      --grain-svg: url("data:image/svg+xml;utf8,<svg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.1 0 0 0 0 0.08 0 0 0 0 0.06 0 0 0 0.18 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+      --accent-hover: #7f2222;
+      --accent-text: #ffffff;
+      --shadow: 0 18px 50px rgba(45, 39, 32, 0.10), 0 2px 8px rgba(45, 39, 32, 0.06);
       color-scheme: light;
     }
     [data-theme="dark"] {
-      --bg: #1b1612;
-      --surface: rgba(27, 22, 18, 0.96);
-      --solid: #231d18;
-      --text: #ece3d2;
-      --muted: #a59784;
-      --rule: #3a3028;
-      --accent: #e27b5a;
-      --accent-hover: #ee8e6f;
-      --button-text: #1b1612;
-      --shadow: 0 28px 70px rgba(0, 0, 0, 0.38), 0 3px 12px rgba(0, 0, 0, 0.25);
-      --grain-opacity: 0.18;
-      --radial-1: rgba(226, 123, 90, 0.06);
-      --radial-2: rgba(236, 227, 210, 0.03);
-      --grain-svg: url("data:image/svg+xml;utf8,<svg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.95 0 0 0 0 0.89 0 0 0 0 0.78 0 0 0 0.22 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+      --bg: #171513;
+      --text: #eee9e2;
+      --muted: #aaa198;
+      --rule: #3c3732;
+      --accent: #db7357;
+      --accent-hover: #e48165;
+      --accent-text: #171513;
+      --shadow: 0 18px 50px rgba(0, 0, 0, 0.34), 0 2px 8px rgba(0, 0, 0, 0.22);
       color-scheme: dark;
     }
     * { box-sizing: border-box; }
@@ -66,254 +51,103 @@
       min-height: 100vh;
       margin: 0;
       color: var(--text);
-      background-color: var(--bg);
-      background-image:
-        radial-gradient(at 20% 10%, var(--radial-1) 0%, transparent 50%),
-        radial-gradient(at 80% 90%, var(--radial-2) 0%, transparent 50%);
-      font-family: 'Newsreader', Georgia, 'Times New Roman', serif;
-      font-size: 19px;
-      line-height: 1.6;
-      font-weight: 400;
-      transition: background-color 0.3s ease, color 0.3s ease;
+      background: var(--bg);
+      font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      transition: background-color 0.25s ease, color 0.25s ease;
     }
-    body::before {
-      content: "";
-      position: fixed;
-      inset: 0;
-      z-index: 1;
-      pointer-events: none;
-      opacity: var(--grain-opacity);
-      mix-blend-mode: multiply;
-      background-image: var(--grain-svg);
-    }
-    [data-theme="dark"] body::before { mix-blend-mode: screen; }
     a { color: inherit; }
-    .site-header {
-      position: sticky;
-      top: 0;
-      z-index: 10;
-      border-bottom: 1px solid var(--rule);
-      background: var(--surface);
-      backdrop-filter: blur(18px);
-      -webkit-backdrop-filter: blur(18px);
+    .page {
+      width: min(920px, calc(100% - 40px));
+      margin: 0 auto;
+      padding: 28px 0 44px;
     }
-    .nav, .page { width: min(1180px, calc(100% - 48px)); margin: 0 auto; }
-    .nav {
-      min-height: 76px;
+    .paper-link {
+      display: block;
+      overflow: hidden;
+      border: 1px solid var(--rule);
+      border-radius: 8px;
+      background: #fff;
+      box-shadow: var(--shadow);
+      color: var(--text);
+      text-decoration: none;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .paper-link:hover { transform: translateY(-2px); }
+    .resume-preview { display: block; width: 100%; height: auto; }
+    .controls {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 24px;
+      gap: 16px;
+      margin-top: 20px;
     }
-    .breadcrumb {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      min-width: 0;
-      color: var(--muted);
-      font-size: 18px;
-    }
-    .breadcrumb a {
-      color: var(--text);
-      font-weight: 600;
-      text-decoration: none;
-      white-space: nowrap;
-    }
-    .breadcrumb a:hover { color: var(--accent); }
-    .breadcrumb svg { flex: 0 0 auto; color: var(--rule); }
-    .nav-actions { display: flex; align-items: center; gap: 10px; }
+    .actions { display: flex; align-items: center; gap: 8px; }
     .button, .theme-toggle {
       display: inline-flex;
+      min-height: 40px;
       align-items: center;
       justify-content: center;
-      gap: 8px;
-      min-height: 42px;
-      border-radius: 999px;
-      font-family: 'Newsreader', Georgia, 'Times New Roman', serif;
-      font-size: 16px;
+      gap: 7px;
+      border: 1px solid var(--rule);
+      border-radius: 10px;
+      background: transparent;
+      color: var(--text);
+      font: inherit;
+      font-size: 14px;
       font-weight: 600;
       line-height: 1;
       text-decoration: none;
-      transition: transform 0.18s ease, border-color 0.18s ease, background 0.18s ease, color 0.18s ease;
+      transition: border-color 0.18s ease, background-color 0.18s ease, color 0.18s ease;
     }
-    .button { padding: 0 17px; border: 1px solid var(--rule); }
-    .button:hover, .theme-toggle:hover { transform: translateY(-1px); }
-    .button-secondary { background: transparent; color: var(--text); }
-    .button-secondary:hover { border-color: var(--muted); background: var(--solid); }
-    .button-primary { border-color: var(--accent); background: var(--accent); color: var(--button-text); }
+    .button { padding: 0 14px; }
+    .button:hover, .theme-toggle:hover { border-color: var(--muted); }
+    .button-primary { border-color: var(--accent); background: var(--accent); color: var(--accent-text); }
     .button-primary:hover { border-color: var(--accent-hover); background: var(--accent-hover); }
-    .theme-toggle {
-      width: 42px;
-      padding: 0;
-      border: 1px solid var(--rule);
-      background: transparent;
-      color: var(--muted);
-      cursor: pointer;
-    }
-    .theme-toggle:hover { border-color: var(--muted); color: var(--text); }
+    .back-link { border-color: transparent; padding-left: 0; color: var(--muted); font-weight: 500; }
+    .back-link:hover { border-color: transparent; color: var(--text); }
+    .theme-toggle { width: 40px; padding: 0; cursor: pointer; }
     .sun, [data-theme="dark"] .moon { display: none; }
     [data-theme="dark"] .sun { display: block; }
-    .page { position: relative; z-index: 2; padding: 66px 0 72px; }
-    .hero {
-      display: flex;
-      align-items: flex-end;
-      justify-content: space-between;
-      gap: 32px;
-      margin-bottom: 34px;
-    }
-    h1 {
-      margin: 0;
-      font-size: clamp(48px, 9vw, 68px);
-      font-weight: 500;
-      letter-spacing: -0.035em;
-      line-height: 1.02;
-    }
-    .subtitle {
-      margin: 17px 0 0;
-      color: var(--muted);
-      font-size: 21px;
-      line-height: 1.55;
-    }
-    .viewer {
-      position: relative;
-      overflow: visible;
-      padding: 0;
-      border: 0;
-      background: transparent;
-    }
-    .paper-link {
-      position: relative;
-      display: block;
-      width: min(880px, 100%);
-      margin: 0 auto;
-      color: var(--text);
-      text-decoration: none;
-    }
-    .paper-link::after {
-      content: "Open full PDF \2197";
-      position: absolute;
-      top: 16px;
-      right: 16px;
-      padding: 9px 12px;
-      border: 1px solid rgba(255, 255, 255, 0.25);
-      border-radius: 999px;
-      background: rgba(24, 22, 20, 0.82);
-      color: #fff;
-      font-family: 'Newsreader', Georgia, 'Times New Roman', serif;
-      font-size: 14px;
-      font-weight: 600;
-      opacity: 0;
-      transform: translateY(-4px);
-      transition: opacity 0.2s ease, transform 0.2s ease;
-    }
-    .paper-link:hover::after, .paper-link:focus-visible::after { opacity: 1; transform: translateY(0); }
-    .resume-preview {
-      display: block;
-      width: 100%;
-      height: auto;
-      border-radius: 2px;
-      background: #fff;
-      box-shadow: var(--shadow);
-    }
-    .page-footer {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 24px;
-      margin-top: 24px;
-      color: var(--muted);
-      font-size: 16px;
-    }
-    .back-link {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      color: var(--text);
-      font-weight: 500;
-      text-underline-offset: 4px;
-      text-decoration-thickness: 1px;
-    }
-    .back-link:hover { color: var(--accent); }
     :focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
-    @media (max-width: 720px) {
-      .nav, .page { width: min(100% - 32px, 1180px); }
-      .nav { min-height: 68px; gap: 12px; }
-      .breadcrumb { gap: 7px; font-size: 16px; }
-      .nav-actions .button-secondary { display: none; }
-      .button { min-height: 40px; padding: 0 14px; font-size: 15px; }
-      .theme-toggle { width: 40px; min-height: 40px; }
-      .page { padding: 44px 0 48px; }
-      .hero { display: block; margin-bottom: 24px; }
-      .viewer { margin-inline: 0; padding: 0; }
-      .paper-link::after { content: "Open \2197"; top: 10px; right: 10px; opacity: 1; transform: none; }
-      .page-footer { align-items: flex-start; flex-direction: column; }
-    }
-    @media (max-width: 430px) {
-      .breadcrumb .current, .breadcrumb svg { display: none; }
-      .nav-actions { gap: 7px; }
-      .button-primary svg { display: none; }
-      h1 { font-size: 48px; }
+    @media (max-width: 640px) {
+      .page { width: min(100% - 24px, 920px); padding: 12px 0 28px; }
+      .paper-link { border-radius: 5px; }
+      .controls { align-items: flex-start; flex-direction: column; margin-top: 14px; }
+      .actions { width: 100%; }
+      .actions .button { flex: 1; }
+      .back-link { min-height: 32px; }
     }
     @media (prefers-reduced-motion: reduce) {
-      *, *::before, *::after { scroll-behavior: auto !important; transition: none !important; }
+      *, *::before, *::after { transition: none !important; }
     }
   </style>
 </head>
 <body>
-  <header class="site-header">
-    <nav class="nav" aria-label="Resume navigation">
-      <div class="breadcrumb" aria-label="Breadcrumb">
-        <a href="/">Kian Foshee</a>
-        <svg width="7" height="12" viewBox="0 0 7 12" fill="none" aria-hidden="true">
-          <path d="M1 1L6 6L1 11" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
-        <span class="current" aria-current="page">Resume</span>
-      </div>
-      <div class="nav-actions">
-        <a class="button button-secondary" href="./kian-foshee-resume.pdf?v=a92af470" target="_blank" rel="noopener">
-          View PDF
-          <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
-            <path d="M5 3H3.5C2.67 3 2 3.67 2 4.5V10.5C2 11.33 2.67 12 3.5 12H9.5C10.33 12 11 11.33 11 10.5V9M8 2H12V6M12 2L6.5 7.5" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
+  <main class="page">
+    <a class="paper-link" href="./kian-foshee-resume.pdf?v=clean-2026" target="_blank" rel="noopener" aria-label="Open Kian Foshee's full resume PDF">
+      <img class="resume-preview" src="./kian-foshee-resume-preview.png?v=clean-2026" alt="Preview of Kian Foshee's one-page resume" width="1224" height="1584" fetchpriority="high">
+    </a>
+    <nav class="controls" aria-label="Resume actions">
+      <a class="button back-link" href="/">
+        <svg width="15" height="15" viewBox="0 0 15 15" fill="none" aria-hidden="true"><path d="M12.5 7.5H2.5M6.5 3.5L2.5 7.5L6.5 11.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        Kian Foshee
+      </a>
+      <div class="actions">
+        <a class="button" href="./kian-foshee-resume.pdf?v=clean-2026" target="_blank" rel="noopener">
+          Open PDF
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M5 3H3.5C2.67 3 2 3.67 2 4.5V10.5C2 11.33 2.67 12 3.5 12H9.5C10.33 12 11 11.33 11 10.5V9M8 2H12V6M12 2L6.5 7.5" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg>
         </a>
-        <a class="button button-primary" href="./kian-foshee-resume.pdf?v=a92af470" download="Kian-Foshee-Resume.pdf">
-          Download PDF
-          <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
-            <path d="M7 1.5V9M4.25 6.5L7 9.25L9.75 6.5M2 12H12" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
+        <a class="button button-primary" href="./kian-foshee-resume.pdf?v=clean-2026" download="Kian-Foshee-Resume.pdf">
+          Download
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M7 1.5V9M4.25 6.5L7 9.25L9.75 6.5M2 12H12" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg>
         </a>
         <button class="theme-toggle" type="button" aria-label="Switch color theme">
-          <svg class="moon" width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
-            <path d="M13.5 10.05A5.75 5.75 0 015.95 2.5 5.76 5.76 0 1013.5 10.05Z" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
-          <svg class="sun" width="17" height="17" viewBox="0 0 17 17" fill="none" aria-hidden="true">
-            <circle cx="8.5" cy="8.5" r="2.75" stroke="currentColor" stroke-width="1.25"/>
-            <path d="M8.5 1V2.25M8.5 14.75V16M16 8.5H14.75M2.25 8.5H1M13.8 3.2L12.9 4.1M4.1 12.9L3.2 13.8M13.8 13.8L12.9 12.9M4.1 4.1L3.2 3.2" stroke="currentColor" stroke-width="1.25" stroke-linecap="round"/>
-          </svg>
+          <svg class="moon" width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M13.5 10.05A5.75 5.75 0 015.95 2.5 5.76 5.76 0 1013.5 10.05Z" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <svg class="sun" width="17" height="17" viewBox="0 0 17 17" fill="none" aria-hidden="true"><circle cx="8.5" cy="8.5" r="2.75" stroke="currentColor" stroke-width="1.25"/><path d="M8.5 1V2.25M8.5 14.75V16M16 8.5H14.75M2.25 8.5H1M13.8 3.2L12.9 4.1M4.1 12.9L3.2 13.8M13.8 13.8L12.9 12.9M4.1 4.1L3.2 3.2" stroke="currentColor" stroke-width="1.25" stroke-linecap="round"/></svg>
         </button>
       </div>
     </nav>
-  </header>
-
-  <main class="page">
-    <section class="hero" aria-labelledby="page-title">
-      <div>
-        <h1 id="page-title">Resume</h1>
-        <p class="subtitle">Software engineer, founder, and research contributor.</p>
-      </div>
-    </section>
-
-    <section class="viewer" aria-label="Resume preview">
-      <a class="paper-link" href="./kian-foshee-resume.pdf?v=a92af470" target="_blank" rel="noopener" aria-label="Open Kian Foshee's full resume PDF">
-        <img class="resume-preview" src="./kian-foshee-resume-preview.png?v=a92af470" alt="Preview of Kian Foshee's one-page resume" width="1224" height="1584" fetchpriority="high">
-      </a>
-    </section>
-
-    <footer class="page-footer">
-      <a class="back-link" href="/"><span aria-hidden="true">&larr;</span> Back to kianfoshee.com</a>
-    </footer>
   </main>
-
   <script>
     (function() {
       const root = document.documentElement;
