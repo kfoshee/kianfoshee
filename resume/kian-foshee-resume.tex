@@ -1,65 +1,65 @@
 \documentclass[10pt,letterpaper]{article}
 
 \usepackage[
-  top=0.46in,
-  bottom=0.44in,
-  left=0.60in,
-  right=0.60in
+  top=0.55in,
+  bottom=0.50in,
+  left=0.62in,
+  right=0.62in
 ]{geometry}
 \usepackage[T1]{fontenc}
 \usepackage[utf8]{inputenc}
-\usepackage[scaled=0.96]{helvet}
-\renewcommand{\familydefault}{\sfdefault}
-\usepackage{microtype}
 \usepackage{enumitem}
 \usepackage{titlesec}
 \usepackage{xcolor}
 \usepackage{array}
 \usepackage{tabularx}
+
+\definecolor{linkblue}{HTML}{0066CC}
 \usepackage[
   colorlinks=true,
-  urlcolor=accent,
-  linkcolor=accent
+  urlcolor=linkblue,
+  linkcolor=linkblue
 ]{hyperref}
-
-\definecolor{accent}{HTML}{185D8A}
-\definecolor{ink}{HTML}{17212B}
-\definecolor{muted}{HTML}{5D6973}
-\definecolor{rule}{HTML}{BCC7CF}
+\hypersetup{
+  pdftitle={Kian Foshee Resume},
+  pdfauthor={Kian Foshee}
+}
 
 \pagestyle{empty}
 \setlength{\parindent}{0pt}
 \setlength{\parskip}{0pt}
 \urlstyle{same}
-\color{ink}
-\fontsize{9.35pt}{11.15pt}\selectfont
 
-\newcommand{\sep}{\enspace\textcolor{rule}{\textbar}\enspace}
-\newcommand{\entry}[3]{%
-  \textbf{#1}\hfill{\small\textcolor{muted}{#2}}\\[-1pt]
-  {\small\textit{\textcolor{muted}{#3}}}\par
-}
+\newcommand{\sep}{\enspace\textcolor{gray!60}{$|$}\enspace}
 
 \titleformat{\section}
-  {\fontsize{10.3pt}{11.5pt}\selectfont\bfseries\color{ink}}
-  {}{0pt}{\MakeUppercase}
-  [\vspace{2pt}{\color{rule}\hrule height 0.55pt}]
-\titlespacing*{\section}{0pt}{7.2pt}{3.5pt}
+  {\normalsize\bfseries}
+  {}
+  {0pt}
+  {\MakeUppercase}
+  [\vspace{-1pt}{\hrule height 0.6pt}\vspace{4pt}]
+
+\titlespacing*{\section}{0pt}{9pt}{4pt}
 
 \setlist[itemize]{
-  leftmargin=13pt,
-  itemsep=1.4pt,
-  topsep=2.2pt,
+  leftmargin=14pt,
+  itemsep=2.5pt,
+  topsep=3pt,
   parsep=0pt,
   partopsep=0pt,
-  label={\raisebox{0.15ex}{\scriptsize\textbullet}}
+  label={\small\textbullet}
+}
+
+\newcommand{\entry}[3]{%
+  \textbf{#1}\hfill{\small #2}\\[-1pt]
+  {\small\textit{#3}}\par
 }
 
 \begin{document}
 
 \begin{center}
-  {\fontsize{22pt}{24pt}\selectfont\bfseries Kian Foshee}\\[2pt]
-  {\small\textcolor{muted}{Software Engineer \sep Founder \sep Research Contributor}}\\[3.5pt]
+  {\LARGE\textbf{Kian Foshee}}\\[3pt]
+  {\small Software Engineer \sep Founder \sep Research Contributor}\\[4pt]
   {\small
     Los Angeles, CA
     \sep \href{mailto:kianfoshee@gmail.com}{kianfoshee@gmail.com}
@@ -69,7 +69,6 @@
   }
 \end{center}
 
-\vspace{-2pt}
 \section{Profile}
 
 Software engineer and founder building grid infrastructure software at
@@ -80,15 +79,15 @@ Opportunity Insights. Grew a consumer company to \$50K+ in revenue.
 \section{Education}
 
 \entry{University of Southern California}{Los Angeles, CA}{Freshman \sep Artificial Intelligence (B.S.)}
-\vspace{2.5pt}
+\vspace{4pt}
 \entry{St. Mark's School of Texas}{Dallas, TX}{Class of 2026 \sep 4.3/4.0 GPA}
 
 \section{Technical Skills}
 
-\begin{tabularx}{\textwidth}{@{}>{\bfseries}p{1.28in} X@{}}
-Engineering & JavaScript, TypeScript, React, Next.js, Node.js, PostgreSQL \\[1.6pt]
-Data & Python, R, SQL, data pipelines, statistical analysis, visualization \\[1.6pt]
-\mbox{AI \& Automation} & Vapi, ElevenLabs, Telnyx, voice agents, workflow automation \\[1.6pt]
+\begin{tabularx}{\textwidth}{@{}>{\bfseries}l@{\hspace{14pt}}>{\raggedright\arraybackslash}X@{}}
+Engineering & JavaScript, TypeScript, React, Next.js, Node.js, PostgreSQL \\[3pt]
+Data & Python, R, SQL, data pipelines, statistical analysis, visualization \\[3pt]
+\mbox{AI \& Automation} & Vapi, ElevenLabs, Telnyx, voice agents, workflow automation \\[3pt]
 Research & Reproducible analysis, data validation, literature review, research writing
 \end{tabularx}
 
@@ -97,22 +96,22 @@ Research & Reproducible analysis, data validation, literature review, research w
 \entry{\href{https://meridian.kianfoshee.com}{Meridian} \sep Founder}{2026--Present}{Grid infrastructure software for large flexible electricity loads}
 \begin{itemize}
   \item Building software to help data centers and other flexible loads connect to the grid faster by reducing demand during periods of constrained local capacity.
-  \item Developing the operating layer that translates available grid capacity into coordinated, dispatchable load flexibility.
+  \item Developing the operating layer to translate available grid capacity into coordinated, dispatchable load flexibility.
 \end{itemize}
 
-\vspace{1.5pt}
+\vspace{3pt}
 \entry{Opportunity Insights \sep Research Contributor}{}{Harvard University \sep Matt Staiger and Jamie Fogel \sep \href{https://papers.ssrn.com/sol3/cf_dev/AbsByAuth.cfm?per_id=8481368}{SSRN profile}}
 \begin{itemize}
   \item Built reproducible R pipelines and produced \textbf{50+ research artifacts} supporting two papers on entrepreneurial exposure and intergenerational mobility, including data cleaning, validation, analysis, and visualization.
 \end{itemize}
 
-\vspace{1.5pt}
+\vspace{3pt}
 \entry{Concord Pools and Spas \sep AI and Automation Engineer}{2025--2026}{Albany, NY \sep Multi-million-dollar retail and installation business}
 \begin{itemize}
   \item Built a production customer-service voice agent, automated accounts payable and inventory tracking, and developed a predictive service-demand system using \textbf{14,000 installation records}.
 \end{itemize}
 
-\vspace{1.5pt}
+\vspace{3pt}
 \entry{Supreme Pickle \sep Founder}{2021--2023}{Direct-to-consumer sporting-goods company}
 \begin{itemize}
   \item Founded and grew the company to \$50K+ in revenue, \textbf{40K+ followers}, and \textbf{100M+ views}, achieving Amazon \textbf{\#1 Best Seller} status and USAPA approval.
