@@ -61,19 +61,21 @@
       margin: 0 auto;
       padding: 28px 0 44px;
     }
-    .paper-link {
+    .document-shell {
       display: block;
       overflow: hidden;
       border: 1px solid var(--rule);
       border-radius: 8px;
       background: #fff;
       box-shadow: var(--shadow);
-      color: var(--text);
-      text-decoration: none;
-      transition: transform 0.2s ease, box-shadow 0.2s ease;
     }
-    .paper-link:hover { transform: translateY(-2px); }
-    .resume-preview { display: block; width: 100%; height: auto; }
+    .resume-document {
+      display: block;
+      width: 100%;
+      aspect-ratio: 8.5 / 11;
+      border: 0;
+      background: #fff;
+    }
     .controls {
       display: flex;
       align-items: center;
@@ -111,7 +113,7 @@
     :focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
     @media (max-width: 640px) {
       .page { width: min(100% - 24px, 920px); padding: 12px 0 28px; }
-      .paper-link { border-radius: 5px; }
+      .document-shell { border-radius: 5px; }
       .controls { align-items: flex-start; flex-direction: column; margin-top: 14px; }
       .actions { width: 100%; }
       .actions .button { flex: 1; }
@@ -124,20 +126,24 @@
 </head>
 <body>
   <main class="page">
-    <a class="paper-link" href="./kian-foshee-resume.pdf?v=clean-2026" target="_blank" rel="noopener" aria-label="Open Kian Foshee's full resume PDF">
-      <img class="resume-preview" src="./kian-foshee-resume-preview.png?v=clean-2026" alt="Preview of Kian Foshee's one-page resume" width="1224" height="1584" fetchpriority="high">
-    </a>
+    <section class="document-shell" aria-label="Kian Foshee resume">
+      <iframe
+        class="resume-document"
+        src="./kian-foshee-resume.pdf?v=latex-2026-2#view=FitH&toolbar=0&navpanes=0"
+        title="Kian Foshee resume, rendered directly from the LaTeX PDF"
+      ></iframe>
+    </section>
     <nav class="controls" aria-label="Resume actions">
       <a class="button back-link" href="/">
         <svg width="15" height="15" viewBox="0 0 15 15" fill="none" aria-hidden="true"><path d="M12.5 7.5H2.5M6.5 3.5L2.5 7.5L6.5 11.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
         Kian Foshee
       </a>
       <div class="actions">
-        <a class="button" href="./kian-foshee-resume.pdf?v=clean-2026" target="_blank" rel="noopener">
+        <a class="button" href="./kian-foshee-resume.pdf?v=latex-2026-2" target="_blank" rel="noopener">
           Open PDF
           <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M5 3H3.5C2.67 3 2 3.67 2 4.5V10.5C2 11.33 2.67 12 3.5 12H9.5C10.33 12 11 11.33 11 10.5V9M8 2H12V6M12 2L6.5 7.5" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg>
         </a>
-        <a class="button button-primary" href="./kian-foshee-resume.pdf?v=clean-2026" download="Kian-Foshee-Resume.pdf">
+        <a class="button button-primary" href="./kian-foshee-resume.pdf?v=latex-2026-2" download="Kian-Foshee-Resume.pdf">
           Download
           <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M7 1.5V9M4.25 6.5L7 9.25L9.75 6.5M2 12H12" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg>
         </a>
